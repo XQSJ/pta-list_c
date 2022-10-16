@@ -1,0 +1,36 @@
+6-11 顺序表 - 20. 线性表逆置
+分数 10
+作者 李祥
+单位 湖北经济学院
+请编写函数，将线性表逆置。
+
+函数原型
+void AListReverse(ALIST *list);
+说明：参数 list 是指示线性表(顺序表)的指针，函数将 list 所指线性表的数据元素排列顺序颠倒过来。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    ALIST a;
+    AListCreate(&a);
+    AListInput(&a);
+    AListReverse(&a);
+    AListOutput(&a);
+    putchar('\n');
+    AListDestroy(&a);
+    return 0;
+}
+输入样例
+( 2.8, 4.7, 7.9, 5.2, 3.6 )
+输出样例
+( 3.6, 5.2, 7.9, 4.7, 2.8 )
+
+答案：
+void AListReverse(ALIST *list)
+{
+    for(int i=0;i<list->length/2;i++)
+    {
+        LElementSwap(&list->element[i],&list->element[list->length-1-i]);
+    }
+}
