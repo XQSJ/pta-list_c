@@ -1,0 +1,55 @@
+6-13 顺序表 - 24. 简单合并
+分数 10
+作者 李祥
+单位 湖北经济学院
+请编写函数，将两个线性表合并为一个线性表。
+
+若两个线性表分别为：(a1,a2,...,am)，(b1,b2,...,bn)，则合并后的结果为：(a1,a2,...,am,b1,b2,...,bn)
+
+函数原型
+ALIST* AListMerge(ALIST *dst, const ALIST *src1, const ALIST *src2);
+说明：参数 dst 是指示目的线性表(顺序表)的指针，src1 和 src2 分别是指示两个源线性表的指针。函数将 src1 和 src2 所指两个源线性表合并，将结果保存到 dst 所指的目的线性表中，函数值为目的线性表的地址。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    ALIST a, b, c;
+    AListCreate(&a);
+    AListCreate(&b);
+    AListCreate(&c);
+    AListInput(&a);
+    AListInput(&b);
+    AListMerge(&c, &a, &b);
+    AListOutput(&c);
+    putchar('\n');
+    AListDestroy(&c);
+    AListDestroy(&b);
+    AListDestroy(&a);
+    return 0;
+}
+输入样例
+( 2.8, 4.7, 5.2, 3.6, 9.5, 0.3 )
+( 8.6, 1.4, 7.7, 6.2 )
+输出样例
+( 2.8, 4.7, 5.2, 3.6, 9.5, 0.3, 8.6, 1.4, 7.7, 6.2 )
+
+答案：
+ALIST* AListMerge(ALIST *dst, const ALIST *src1, const ALIST *src2)
+{
+    dst->length=src1->length+src2->length;
+    dst->size=src1->size+src2->size;
+    for(int i=0;i<src1->length+src2->length;i++)
+    {
+        if(i<src1->length)
+        {
+            dst->element[i]=src1->element[i];
+        }
+        else
+        {
+            dst->element[i]=src2->element[i-src1->length];
+        }
+        
+    }
+     return dst;
+}
