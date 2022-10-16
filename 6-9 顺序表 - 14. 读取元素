@@ -1,0 +1,52 @@
+6-9 顺序表 - 14. 读取元素
+分数 10
+作者 李祥
+单位 湖北经济学院
+请编写函数，读取线性表中的数据元素。
+
+函数原型
+void AListGet(const ALIST *list, int index, LELEMENT *element);
+说明：参数 list 是指示线性表(顺序表)的指针，index 是数据元素的位序，element 是指示数据元素的指针。函数 list 所指示的线性表中位序为 index 的数据元素保存到 element 所指示的数据元素中。
+
+要求：假设线性表长度为 n(n≥0)，读取位序为 i，若 1≤i≤n，则读取 i 处的数据元素；否则报告错误：“不正确的位置!”，不读取数据元素。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    int i;
+    LELEMENT x = 0.5;
+    ALIST a;
+    AListCreate(&a);
+    AListInput(&a);
+    scanf("%d", &i);
+    AListGet(&a, i, &x);
+    LElementOutput(&x);
+    putchar(' ');
+    AListOutput(&a);
+    putchar('\n');
+    AListDestroy(&a);
+    return 0;
+}
+输入样例1
+( 2.5, 5.8, 4.9, 7.2, 1.9, 8.3 )
+3
+输出样例1
+4.9 ( 2.5, 5.8, 4.9, 7.2, 1.9, 8.3 )
+输入样例2
+( 2.5, 5.8, 4.9, 7.2, 1.9, 8.3 )
+9
+输出样例2
+Incorrect index!
+0.5 ( 2.5, 5.8, 4.9, 7.2, 1.9, 8.3 )
+
+答案：
+void AListGet(const ALIST *list, int index, LELEMENT *element)
+{
+    if((index>=1)&&(index<=list->length))
+    {
+        *element = list->element[index-1];
+    }
+    else
+        printf("Incorrect index!\n");
+}
