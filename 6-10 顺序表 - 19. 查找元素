@@ -1,0 +1,55 @@
+6-10 顺序表 - 19. 查找元素
+分数 10
+作者 李祥
+单位 湖北经济学院
+请编写函数，在线性表中查找数据元素。
+
+函数原型
+int AListFind(const ALIST *list, const LELEMENT *element);
+说明：参数 list 是指示线性表(顺序表)的指针，element 是指示数据元素的指针。函数在 list 所指线性表中查找首个与 element 所指数据元素相同的数据元素，若查找成功，则函数值为线性表中找到的首个匹配的数据元素的位序，否则为0。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    int i;
+    LELEMENT x;
+    ALIST a;
+    AListCreate(&a);
+    AListInput(&a);
+    LElementInput(&x);
+    i = AListFind(&a, &x);
+    if (i)
+    {
+        printf("Found at %d.\n", i);
+    }
+    else
+    {
+        puts("Not found!");
+    }
+    AListDestroy(&a);
+    return 0;
+}
+输入样例1
+( 2.5, 3.6, 4.9, 6.4 )
+4.9
+输出样例1
+Found at 3.
+输入样例2
+( 2.5, 3.6, 4.9, 6.4 )
+5.4
+输出样例2
+Not found!
+
+答案：
+int AListFind(const ALIST *list, const LELEMENT *element)
+{
+    int index;
+    for(index=0;index<list->length;index++)
+    {
+        
+        if(LElementEq(element,&list->element[index]))
+            return index+1;
+    }
+    return 0;
+}
