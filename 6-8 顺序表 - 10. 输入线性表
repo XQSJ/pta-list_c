@@ -1,0 +1,56 @@
+6-8 顺序表 - 10. 输入线性表
+分数 10
+作者 李祥
+单位 湖北经济学院
+请编写函数，输入线性表。
+
+函数原型
+void AListInput(ALIST *list);
+说明：参数 list 是指示线性表(顺序表)的指针，函数输入线性表到 list 所指示的线性表(顺序表)中。
+
+要求：输入线性表时，以“(”开始，以“)”结束。数据元素之间以逗号间隔，逗号前后均可留若干空格。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    ALIST a;
+    AListCreate(&a);
+    AListInput(&a);
+    AListOutput(&a);
+    putchar('\n');
+    AListDestroy(&a);
+    return 0;
+}
+输入样例1
+( )
+输出样例1
+( )
+输入样例2
+(   8.2)
+输出样例2
+( 8.2 )
+输入样例3
+   (8.2    4.7,  6.3  ,9.5  ,  0.2    )    
+输出样例3
+( 8.2, 4.7, 6.3, 9.5, 0.2 )
+
+答案：
+void AListInput(ALIST *list){
+    AListClear(list);
+    scanf(" (");
+    int i=0;
+    char a;
+    int l=0;
+    while(scanf(" %c", &a), a != (')'))
+    {
+       ungetc(a, stdin);
+        LElementInput(&list->element[i]);
+        scanf(" ,");
+        if(list->length == list->size){
+            list->size += AListIncrement;
+        }
+        i++;   
+        list->length++;
+    }
+}
