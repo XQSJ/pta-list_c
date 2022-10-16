@@ -1,0 +1,33 @@
+6-3 顺序表 - 12. 线性表长度
+分数 5
+作者 李祥
+单位 湖北经济学院
+请编写函数，求线性表的长度。
+
+函数原型
+int AListLength(const ALIST *list);
+说明：参数 list 是指示线性表(顺序表)的指针，函数值为线性表的长度。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    ALIST a;
+    AListCreate(&a);
+    AListInput(&a);
+    printf("%d\n", AListLength(&a));
+    AListDestroy(&a);
+    return 0;
+}
+输入样例
+( 2.8, 3.9, 6.5 )
+输出样例
+3
+
+答案：
+int AListLength(const ALIST *list)
+{
+    
+    return list->length;
+    
+}
