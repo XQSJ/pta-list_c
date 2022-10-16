@@ -1,0 +1,50 @@
+6-6 顺序表 - 9. 清空线性表
+分数 5
+作者 李祥
+单位 湖北经济学院
+请编写函数，删除线性表的全部数据元素。
+
+函数原型
+void AListClear(ALIST *list);
+说明：参数 list 是指示线性表(顺序表)的指针，函数删除 list 所指示的线性表中的全部数据元素。
+
+修改主函数，对以上函数进行测试。
+
+int main()
+{
+    int n, i;
+    LELEMENT x;
+    ALIST a;
+    AListCreate(&a);
+    scanf("%d", &n);
+    while (n--)
+    {
+        scanf("%d", &i);
+        LElementInput(&x);
+        AListInsert(&a, i, &x);
+    }
+    AListOutput(&a);
+    putchar('\n');
+    AListClear(&a);
+    AListOutput(&a);
+    putchar('\n');
+    AListDestroy(&a);
+    return 0;
+}
+输入样例
+5
+1 1.9
+2 3.2
+3 4.7
+4 -8.6
+5 2.5
+输出样例
+( 1.9, 3.2, 4.7, -8.6, 2.5 )
+( )
+
+答案：
+void AListClear(ALIST *list)
+{
+    list->length=0;
+    list->size= 0;
+}
