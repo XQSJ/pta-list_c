@@ -1,0 +1,76 @@
+6-1 顺序表 - 3. 创建线性表
+分数 5
+作者 李祥
+单位 湖北经济学院
+定义如下线性表(顺序表)类型。
+
+typedef struct
+{
+    int size, length;
+    LELEMENT *element;
+} ALIST;
+说明：size 为动态数组的尺寸，length 为线性表的长度，element 为指示动态数组起始地址的指针。
+
+请编写函数，创建线性表(顺序表)。
+
+函数原型
+void AListCreate(ALIST *list);
+说明：参数 list 是指示线性表(顺序表)的指针。函数完成对线性表(顺序表)的初始化：分配动态数组内存空间，记录动态数组尺寸，并将线性表置为空表。
+
+打开“线性表”项目，创建线性表(顺序表)类型的两个文件“AList.h”和“AList.c”。在这两个文件中声明线性表(顺序表)类型和相关的符号常量，并实现线性表的操作函数。
+
+AList.h
+
+#ifndef _AList_h_
+#define _AList_h_
+
+#include "LElement.h"
+
+#define AListInitSize 1024
+#define AListIncrement 128
+
+typedef struct
+{
+    int size, length;
+    LELEMENT *element;
+} ALIST;
+
+void AListCreate(ALIST *list);
+
+#endif
+说明：AListInitSize 为动态数组初始尺寸；AListIncrement 为动态数组扩容的增量。
+
+AList.c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "AList.h"
+
+/* 你提交的代码将被嵌在这里 */
+打开“main.c”，修改主函数对以上函数进行测试。
+
+main.c
+
+#include <stdio.h>
+#include "AList.h"
+
+int main()
+{
+    ALIST a;
+    AListCreate(&a);
+    printf("%d %d ", a.size, a.length);
+    if (a.element != NULL)
+    {
+        puts("OK");
+    }
+    free(a.element);
+    return 0;
+}
+答案：
+void AListCreate(ALIST *list)
+{
+    list->size = AListInitSize;
+    list->length = 0;
+    list->element=(ALIST*)malloc(AListInitSize*sizeof(LELEMENT));
+        
+}
