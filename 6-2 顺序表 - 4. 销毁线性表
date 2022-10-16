@@ -1,0 +1,33 @@
+6-2 顺序表 - 4. 销毁线性表
+分数 5
+作者 李祥
+单位 湖北经济学院
+请编写函数，销毁线性表(顺序表)。
+
+函数原型
+void AListDestroy(ALIST *list);
+说明：参数 list 是指示线性表(顺序表)的指针。函数完成对线性表(顺序表)的销毁：回收动态数组内存空间，将指针置为空指针，将线性表置为空表，并将数组尺寸置为零。
+
+在“AList.h”中添加此函数的声明，在“AList.c”中添加此函数，在“main.c”中修改主函数进行测试。
+
+int main()
+{
+    ALIST a;
+    AListCreate(&a);
+    ......
+    AListDestroy(&a);
+    printf("%d %d ", a.size, a.length);
+    if (NULL == a.element)
+    {
+        puts("OK");
+    }
+    return 0;
+}
+答案：
+void AListDestroy(ALIST *list)
+{
+    free(list->element);
+    list->element =NULL;
+    list->size = 0;
+    list->length = 0;
+}
